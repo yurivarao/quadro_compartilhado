@@ -10,7 +10,7 @@ public class ShapeListServer {
         try{  
             ShapeList aShapelist = new ShapeListServant();
             ShapeList stub = (ShapeList) UnicastRemoteObject.exportObject(aShapelist,0);
-            //System.setProperty("java.rmi.server.hostname","192.168.0.179");
+            //System.setProperty("java.rmi.server.hostname","192.168.000.000");
             Registry rgsty = LocateRegistry.createRegistry(1099);
             rgsty.rebind("ShapeList", aShapelist);
             //Naming.rebind("ShapeList", aShapelist);       
