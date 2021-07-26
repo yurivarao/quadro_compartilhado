@@ -6,10 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ShapeListServer {
     public static void main(String args[]){
-        System.setSecurityManager(new RMISecurityManager()
-            //{public void checkConnect (String host, int port) {}
-            //public void checkConnect (String host, int port, Object context) {}}
-        );
+        System.setSecurityManager(new RMISecurityManager());
         try{  
             ShapeList aShapelist = new ShapeListServant();
             ShapeList stub = (ShapeList) UnicastRemoteObject.exportObject(aShapelist,0);

@@ -7,21 +7,21 @@ import java.awt.Color;
 
 public class ShapeListClient{
     public static void main(String args[]){
-        String option = "Read";
+        String option = "Write";        // read or write
         String shapeType = "Rectangle";
-        if(args.length > 0)  option = args[0];	// read or write
+        if(args.length > 0)  option = args[0];	
         if(args.length > 1)  shapeType = args[1];	// specify Circle, Line etc
         System.out.println("option = " + option + "shape = " + shapeType);
         if(System.getSecurityManager() == null){
-            System.setSecurityManager(new RMISecurityManager()
-                //{public void checkConnect (String host, int port) {}
-                //public void checkConnect (String host, int port, Object context) {}}
-            );
+            System.setSecurityManager(new RMISecurityManager());
         } else System.out.println("Already has a security manager, so cant set RMI SM");
         ShapeList aShapeList = null;
         try{
-            //aShapeList  = (ShapeList) Naming.lookup("//Jean.torriano.net/ShapeList");
-            aShapeList  = (ShapeList) Naming.lookup("//localhost:1099/ShapeList");
+            // Server e Client na mesma máquina
+            // aShapeList  = (ShapeList) Naming.lookup("//localhost:1099/ShapeList");
+            // Server e Client em máquinas diferentes
+                                                     //IP do server: porta
+            aShapeList  = (ShapeList) Naming.lookup("//192.168.000.000:1099/ShapeList");
             System.out.println("Found server");
             Vector sList = aShapeList.allShapes();
             System.out.println("Got vector");
